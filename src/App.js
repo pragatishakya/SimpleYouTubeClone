@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+// import { useState } from "react"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Col, Container, Row } from "react-bootstrap"
+import MainVideo from "./components/MainVideo"
+import SearchBar from "./components/SearchBar"
+import Video from "./components/Video"
+import VideoList from "./components/VideoList"
+
+const App= ()=>{
+
+  // const [search,setSearch]= useState('Coding')
+
+  // const onSubmitHandler=(e)=>{
+  //   e.preventDefault()
+  // }
+
+  return <Container>
+    <SearchBar/>
+    <Row>
+      <Col sm={8}>
+        <MainVideo/>
+      </Col>
+      <Col sm={4}>
+        <VideoList/> 
+      </Col>     
+    </Row>
+  </Container>
 }
 
-export default App;
+export default App
