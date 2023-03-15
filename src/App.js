@@ -1,6 +1,4 @@
-// import { useState } from "react"
-
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Col, Container, Row } from "react-bootstrap"
 import youtube from "./components/api/youtube"
 import MainVideo from "./components/MainVideo"
@@ -9,21 +7,26 @@ import VideoList from "./components/VideoList"
 
 const App= ()=>{
 
-  const[  mainVideo, setMainVideo ]=useState('')
+  const[ mainVideo, setMainVideo ]=useState('')
+  const[ videos, setVideos ]=useState([])
 
   const handleSubmit= async (searchTerm)=>{
-    const response= await youtube.get('Search',{
+    const response= await youtube.get('search',{
       params:{
         part:'snippet',
         maxResults:5,
-        key:'AIzaSyCpgOXdFvSk7PFamvd0394TTuQ36W0AoGM',
+        key:'AIzaSyDpSQ5pcks16T9OjJ_y27P3UfolQ31bP2I',
         q:searchTerm
       }
     })
-    console.log(response.data)
-    setMainVideo(response.data.item[0])
-
+    // console.log(response.data.items[0].id.videoId)
+    setMainVideo(response.data.items[0])
+    setVideos(response.data.items)
   }
+
+  useEffect(()=>{
+    handleSubmit('Node.js')
+  },[])
 
   return <Container>
     {/* <h1>Hello</h1> */}
@@ -33,7 +36,7 @@ const App= ()=>{
         <MainVideo videoRef={mainVideo}/>
       </Col>
       <Col sm={4}>
-        <VideoList/> 
+        <VideoList videosList={videos} setMainVideo={setMainVideo} /> 
       </Col>     
     </Row>
   </Container>

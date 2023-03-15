@@ -7,8 +7,6 @@ const SearchBar=({onSubmit})=>{
 
   const [ search , setSearch ] = useState('')
 
-
-
     return <><InputGroup className="mt-3">
       {/* return <h1>TEST</h1> */}
         <Form onSubmit={(e)=> {

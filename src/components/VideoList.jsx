@@ -1,17 +1,15 @@
 import Video from "./Video"
 import Card from 'react-bootstrap/Card';
 
-const VideoList=()=>{
-    const videos=[1,2,3,4,5]
+const VideoList=({videosList,setMainVideo})=>{
 
-    return <div className="mt-3">
+    if(videosList.length ===0) return <h1>Loading...</h1>
+    else{return <div className="mt-3">
         <Card className="mt-3">
-        <Card.Body>
-            {videos.map((vid,idx)=> <Video key={idx} />)}
-        </Card.Body>
+            {videosList.map((vid,idx)=> <Video videoDetail={vid} key={idx} setMainVideo={setMainVideo}/>)}
         </Card>
-        
-    </div>
+    </div>}
+    
 }
 
 
